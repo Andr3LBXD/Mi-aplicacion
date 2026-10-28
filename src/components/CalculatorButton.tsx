@@ -1,7 +1,8 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import * as Haptics from 'expo-haptics'; // <--- 1. Importamos las vibraciones hápticas
 
-interface ButtonProps {
+interface CalculatorButtonProps {
   label: string;
   onPress: () => void;
   color?: string;
@@ -12,15 +13,22 @@ interface ButtonProps {
 export default function CalculatorButton({
   label,
   onPress,
-  color = '#d0d6c5',
-  textColor = '#223028',
+  color = '#26352d',
+  textColor = '#d0d6c5',
   flex = 1,
-}: ButtonProps) {
+}: CalculatorButtonProps) {
+  
+  // Función que combina la acción del botón con la vibración
+  const handlePress = () => {
+    Haptics.selectionAsync(); // <--- 2. Dispara una vibración corta y táctil tipo "clic"
+    onPress();
+  };
+
   return (
     <TouchableOpacity
-      activeOpacity={0.8}
       style={[styles.button, { backgroundColor: color, flex }]}
-      onPress={onPress}
+      onPress={handlePress} // <--- 3. Usamos esta nueva función aquí
+      activeOpacity={0.7}
     >
       <Text style={[styles.text, { color: textColor }]}>{label}</Text>
     </TouchableOpacity>
@@ -29,20 +37,16 @@ export default function CalculatorButton({
 
 const styles = StyleSheet.create({
   button: {
-    height: 58,
-    borderRadius: 8,
+    height: 52,
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 1.5,
-    borderColor: '#111714',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 2,
-    elevation: 3,
+    borderRadius: 8,
+    margin: 2,
+    borderWidth: 1,
+    borderColor: '#3f5647',
   },
   text: {
-    fontSize: 22,
-    fontWeight: '800',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
