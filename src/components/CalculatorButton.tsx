@@ -1,54 +1,48 @@
-import { Pressable, Text, StyleSheet } from 'react-native';
-import { Colors } from '../theme/colors';
+import React from 'react';
+import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
-interface Props {
+interface ButtonProps {
   label: string;
-  color?: string;
-  doubleSize?: boolean;
   onPress: () => void;
+  color?: string;
+  textColor?: string;
+  flex?: number;
 }
 
-export const CalculatorButton = ({
+export default function CalculatorButton({
   label,
-  color = Colors.darkGray,
-  doubleSize = false,
   onPress,
-}: Props) => {
+  color = '#d0d6c5',
+  textColor = '#223028',
+  flex = 1,
+}: ButtonProps) {
   return (
-    <Pressable
+    <TouchableOpacity
+      activeOpacity={0.8}
+      style={[styles.button, { backgroundColor: color, flex }]}
       onPress={onPress}
-      style={({ pressed }) => [
-        styles.button,
-        { backgroundColor: color },
-        doubleSize && styles.doubleButton,
-        { opacity: pressed ? 0.8 : 1 },
-      ]}
     >
-      <Text style={styles.buttonText}>{label}</Text>
-    </Pressable>
+      <Text style={[styles.text, { color: textColor }]}>{label}</Text>
+    </TouchableOpacity>
   );
-};
+}
 
 const styles = StyleSheet.create({
   button: {
-    height: 70,
-    width: 70,
-    backgroundColor: Colors.darkGray,
-    borderRadius: 100,
+    height: 58,
+    borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
-    marginHorizontal: 8,
+    borderWidth: 1.5,
+    borderColor: '#111714',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    elevation: 3,
   },
-  doubleButton: {
-    width: 156,
-  },
-  buttonText: {
-    textAlign: 'center',
-    padding: 10,
-    fontSize: 30,
-    color: Colors.textPrimary,
-    fontFamily: 'Heavitas',
+  text: {
+    fontSize: 22,
+    fontWeight: '800',
   },
 });
-
-export default CalculatorButton;

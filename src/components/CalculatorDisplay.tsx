@@ -1,38 +1,47 @@
-import { View, StyleSheet } from 'react-native';
-import CustomText from './CustomText';
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 
-interface Props {
-  value: string;
-  prevValue?: string;
+interface DisplayProps {
+  formula: string;
+  result: string;
 }
 
-export const CalculatorDisplay = ({ value, prevValue }: Props) => {
+export default function CalculatorDisplay({ formula, result }: DisplayProps) {
   return (
     <View style={styles.container}>
-      {prevValue ? (
-        <CustomText variant="small" style={styles.prevText}>
-          {prevValue}
-        </CustomText>
-      ) : null}
-      <CustomText variant="big" numberOfLines={1} adjustsFontSizeToFit style={styles.mainText}>
-        {value}
-      </CustomText>
+      <Text style={styles.formulaText} numberOfLines={2} adjustsFontSizeToFit>
+        {formula || '0'}
+      </Text>
+      <Text style={styles.resultText} numberOfLines={1} adjustsFontSizeToFit>
+        {result ? `= ${result}` : ''}
+      </Text>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 10,
-    paddingBottom: 20,
+    flex: 1,
+    justifyContent: 'flex-end',
     alignItems: 'flex-end',
+    padding: 16,
+    marginVertical: 8,
+    backgroundColor: '#2b3b32',
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: '#3f5647',
   },
-  prevText: {
-    opacity: 0.6,
+  formulaText: {
+    color: '#93a38d',
+    fontSize: 24,
+    fontWeight: '600',
+    textAlign: 'right',
   },
-  mainText: {
-    fontSize: 60,
+  resultText: {
+    color: '#d0d6c5',
+    fontSize: 38,
+    fontWeight: '900',
+    textAlign: 'right',
+    marginTop: 4,
   },
 });
-
-export default CalculatorDisplay;

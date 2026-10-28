@@ -1,22 +1,29 @@
-import { Text, TextProps, StyleSheet } from 'react-native';
-import { globalStyles } from '../theme/global-styles';
+import React from 'react';
+import { Text, StyleSheet, TextProps } from 'react-native';
 
-interface Props extends TextProps {
-  variant?: 'big' | 'small';
+interface CustomTextProps extends TextProps {
+  children: React.ReactNode;
+  variant?: 'normal' | 'title' | 'display';
 }
 
-export const CustomText = ({ children, variant = 'big', style, ...rest }: Props) => {
+export default function CustomText({ children, variant = 'normal', style, ...props }: CustomTextProps) {
   return (
-    <Text
+    <Text 
       style={[
-        variant === 'big' ? globalStyles.mainResult : globalStyles.subResult,
-        style,
-      ]}
-      {...rest}
+        variant === 'title' && styles.title,
+        variant === 'display' && styles.display,
+        variant === 'normal' && styles.normal,
+        style
+      ]} 
+      {...props}
     >
       {children}
     </Text>
   );
-};
+}
 
-export default CustomText;
+const styles = StyleSheet.create({
+  normal: { color: '#ffffff', fontSize: 20, fontWeight: '600' },
+  title: { color: '#38bdf8', fontSize: 22, fontWeight: 'bold' },
+  display: { color: '#f3f4f6', fontSize: 38, fontWeight: 'bold' },
+});
