@@ -1,41 +1,35 @@
 {
   "expo": {
-    "name": "Calculadora Andre",
-    "slug": "Mi-aplicacion",
+    "name": "Tactical Elite-V3",
+    "slug": "tactical-elite-v3",
     "version": "1.0.0",
     "orientation": "portrait",
-    "userInterfaceStyle": "automatic",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
     "newArchEnabled": true,
-    "scheme": "mi-aplicacion",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#1b2620"
+    },
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#1b2620"
       },
-      "package": "com.andr3lbxd.Miaplicacion"
+      "package": "com.andreloja.tacticalelite"
     },
     "web": {
-      "bundler": "metro"
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-router",
-      "expo-font",
-      "expo-image",
-      "expo-splash-screen",
-      "expo-status-bar",
-      "expo-web-browser"
+      "expo-router"
     ],
-    "extra": {
-      "router": {
-        "asyncRoutes": {
-          "web": true
-        }
-      },
-      "eas": {
-        "projectId": "1bf8a468-3b7c-45ef-b6fb-69ac1abde86b"
-      }
-    }
+    "scheme": "tacticalelite"
   }
 }
