@@ -30,6 +30,16 @@
     "plugins": [
       "expo-router"
     ],
-    "scheme": "tacticalelite"
+    "scheme": "tacticalelite",
+    "extra": {
+      "router": {
+        "asyncRoutes": {
+          "web": true
+        }
+      },
+      "eas": {
+        "projectId": "8cc39ad4-e995-4822-a685-34a0ac745872"
+      }
+    }
   }
 }

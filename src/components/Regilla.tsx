@@ -58,6 +58,7 @@ export default function Regilla({ buildFormula, clean, deleteLast, calculateResu
         <CalculatorButton label="2" onPress={() => buildFormula('2')} color="#d0d6c5" textColor="#223028" />
         <CalculatorButton label="3" onPress={() => buildFormula('3')} color="#d0d6c5" textColor="#223028" />
         <CalculatorButton label="-" onPress={() => buildFormula('-')} color="#26352d" textColor="#93a38d" />
+          
       </View>
 
       {/* Fila 7: Ceros, Punto y Suma */}
